@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta chatset="utf-8"/>
+    <title>aop demo</title>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <h1>Aop demo, please open console</h1>
+    <script>
+      class Animal {
+        constructor() {
+          this.name = 'dog';
+        }
+        run() {
+          console.log(`== ${this.name} runing ==`);
+        }
+      }
+      const bgDog = new Animal();
+      console.log(bgDog);
+
+      aop.before(bgDog, 'run', function() {
+        console.log('before run');
+      });
+
+      aop.after(bgDog, 'run', function() {
+        console.log('after run');
+      });
+
+      aop.around(bgDog, 'run', function(action) {
+        console.log('around - ', action);
+      });
+
+      bgDog.run();
+
+      <!-- console.log('test after'); -->
+      <!-- bgDog.run(); -->
+
+    </script>
+  </body>
+</html>
